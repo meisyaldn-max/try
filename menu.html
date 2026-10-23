@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - Kalkulator Pesanan</title>
+    <link href="style.css" rel="stylesheet"/>
+</head>
+<body>
+    <header>
+        <h1>MENU</h1>
+        <p>Pilihan dan Harga</p>
+    </header>
+    
+    <nav>
+        <a href="repoy.html">Beranda</a>
+        <a href="menu.html">Menu</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
+
+    <section id="menu-section">
+        <h2>Daftar Menu</h2>
+        <ul class="menu-list">
+            <li>Kopi Hitam - Rp15.000</li>
+            <li>Kopi Susu - Rp20.000</li>
+            <li>Kopi Latte - Rp12.000</li>
+            <li>Air Mineral - Rp18.000</li>
+            <li>Alpukat Kocok - Rp30.000</li>
+            <li>Jus Jeruk - Rp18.000</li>
+            <li>Jus Sirsak - Rp15.000</li>
+            <li>Jus Apel - Rp28.000</li>
+        </ul>
+
+        <div class="order-form">
+            <h3>Pesan Menu</h3>
+            <div class="form-group">
+                <label for="pilihan-menu">Pilih Menu:</label>
+                <select id="pilihan-menu">
+                    <option value="15000">Kopi Hitam - Rp15.000</option>
+                    <option value="20000">Kopi Susu - Rp20.000</option>
+                    <option value="12000">Kopi Latte - Rp12.000</option>
+                    <option value="18000">Air Mineral - Rp18.000</option>
+                    <option value="30000">Alpukat Kocok - Rp30.000</option>
+                    <option value="18000">Jus Jeruk - Rp18.000</option>
+                    <option value="15000">Jus Sirsak - Rp15.000</option>
+                    <option value="28000">Jus Apel - Rp28.000</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="jumlah-pesanan">Jumlah:</label>
+                <input type="number" id="jumlah-pesanan" value="1" min="1">
+            </div>
+
+            <button type="button" id="btn-hitung">Hitung Total</button>
+        </div>
+    </section>
+
+    <aside>
+        <h2>Total Pesanan : <span id="total-harga">Rp0</span></h2>
+    </aside>
+
+    <script>
+        // Logika JavaScript untuk menghitung total pesanan secara otomatis
+        const selectMenu = document.getElementById('pilihan-menu');
+        const inputJumlah = document.getElementById('jumlah-pesanan');
+        const btnHitung = document.getElementById('btn-hitung');
+        const spanTotal = document.getElementById('total-harga');
+
+        function hitungTotal() {
+            const hargaSatuan = parseInt(selectMenu.value) || 0;
+            const jumlah = parseInt(inputJumlah.value) || 0;
+            const total = hargaSatuan * jumlah;
+
+            // Format ke Rupiah
+            spanTotal.textContent = "Rp" + total.toLocaleString('id-ID');
+        }
+
+        // Jalankan saat tombol diklik atau nilai diubah
+        btnHitung.addEventListener('click', hitungTotal);
+        selectMenu.addEventListener('change', hitungTotal);
+        inputJumlah.addEventListener('input', hitungTotal);
+    </script>
+</body>
+</html>
